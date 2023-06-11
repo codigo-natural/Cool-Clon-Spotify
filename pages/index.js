@@ -2,9 +2,7 @@ import { Sidebar } from "../components/Sidebar";
 
 export default function Home() {
   return (
-    <div className="">
-      <h1>This is a Cool Spotify Clone</h1>
-    
+    <div className="bg-black h-scren overflow-hidden">
       <main>
         <Sidebar />
         {/* Center  */}
@@ -12,5 +10,5 @@ export default function Home() {
 
       <div>{/* Player */}</div>
     </div>
-  )
+  );
 }
