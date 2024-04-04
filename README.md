@@ -8,7 +8,7 @@ Proyecto realizado con el fin de poner en practica el consume de APIs, ademas de
 - Debounce
 - Tailwind CSS
 - Spotify API
-- oauth JWT
+- 0auth JWT
 - access/refresh
 - tokens
 - NextAuth
