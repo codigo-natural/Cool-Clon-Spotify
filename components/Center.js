@@ -12,23 +12,24 @@ const colors = [
   "from-yellow-500",
   "from-pink-500",
   "from-purple-500",
-]
+];
 
 export const Center = () => {
   const { data: session } = useSession();
-  const [ color, setColor ] = useState(null)
+  const [color, setColor] = useState(null);
 
   useEffect(() => {
     setColor(shuffle(colors).pop());
-  }, [])
+  }, []);
 
   return (
     <div className="flex-grow">
       <header className="absolute top-5 right-8">
         <div className="flex items-center bg-red-600 space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2">
           <Image
-            className="rounded-full w-10 h-10"
+            className={`w-10 h-10 p-1 rounded-full ring-2 ring-${color} dark:ring-${color}`}
             src={session?.user?.image}
+            quality={100}
             width={150}
             height={150}
             alt=""
