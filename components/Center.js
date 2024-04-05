@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { ChevronDownIcon } from "@heroicons/react/outline";
 import { shuffle } from "lodash";
 import { playlistIdState, playlistState } from "../atoms/playlistAtom";
@@ -38,12 +38,13 @@ export const Center = () => {
       .catch((err) => console.log("Something went wrong", err));
   }, [spotifyApi, playlistId]);
 
-  console.log(playlistId);
-
   return (
-    <div className="flex-grow">
+    <div className="flex-grow h-screen overflow-y-scroll scrollbar-hide">
       <header className="absolute top-5 right-8">
-        <div className="flex items-center text-white bg-black space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2">
+        <div
+          onClick={signOut}
+          className="flex items-center text-white bg-black space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2"
+        >
           <Image
             className={`w-10 h-10 p-1 rounded-full ring-2 ring-${color} dark:ring-${color}`}
             src={session?.user?.image}

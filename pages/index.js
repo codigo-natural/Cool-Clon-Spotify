@@ -4,7 +4,7 @@ import { getSession } from "next-auth/react";
 
 export default function Home() {
   return (
-    <div className="bg-black h-scren overflow-hidden">
+    <div className="bg-black h-screen overflow-hidden">
       <main className="flex">
         <Sidebar />
         <Center />
@@ -15,7 +15,7 @@ export default function Home() {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
   const session = await getSession(context);
 
   return {
