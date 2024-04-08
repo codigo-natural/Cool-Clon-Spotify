@@ -99,6 +99,21 @@ export const Player = () => {
         <ReplyIcon className="button w-10 h-10" />
       </div>
 
+      {/* Right */}
+
+      <div className="flex items-center space-x-3 md:space-x-4 justify-end pr-5">
+        <VolumeDownIcon className="button w-10 h-10" />
+        <input
+          className="w-14 md:w-28"
+          type="range"
+          value={volume}
+          onChange
+          min={0}
+          max={100}
+        />
+        <VolumeUpIcon className="button w-10 h-10" />
+      </div>
+
     </div>
   );
 }
