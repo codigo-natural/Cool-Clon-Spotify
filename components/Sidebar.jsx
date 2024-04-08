@@ -4,9 +4,9 @@ import {
   LibraryIcon,
   PlusCircleIcon,
   RssIcon,
-  HeartIcon,
 } from "@heroicons/react/outline";
-import { signOut, useSession } from "next-auth/react";
+import { HeartIcon } from "@heroicons/react/solid";
+import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import useSpotify from "../hooks/useSpotify";
 import { useRecoilState } from "recoil";
@@ -17,8 +17,6 @@ export const Sidebar = () => {
   const { data: session, status } = useSession();
   const [playlist, setPlaylist] = useState([]);
   const [playlistId, setPlaylistId] = useRecoilState(playlistIdState);
-
-  console.log("You picked playlist >>>", playlistId)
 
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
@@ -49,11 +47,11 @@ export const Sidebar = () => {
           <p>Create a Playlist</p>
         </button>
         <button className="flex items-center space-x-2 hover:text-white">
-          <HeartIcon className="h-5 w-5" />
+          <HeartIcon className="h-5 w-5 text-blue-500" />
           <p>Like Songs</p>
         </button>
         <button className="flex items-center space-x-2 hover:text-white">
-          <RssIcon className="h-5 w-5" />
+          <RssIcon className="h-5 w-5 text-green-500" />
           <p>Your episodes</p>
         </button>
         <hr className="border-t-[0.1px] border-gray-900" />
