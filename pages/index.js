@@ -1,29 +1,38 @@
-import { Sidebar } from "../components/Sidebar";
-import { Center } from "../components/Center";
-import { getSession } from "next-auth/react";
-import { Player } from "../components/Player";
+import { getProviders, signIn } from "next-auth/react";
+import Image from "next/image";
 
-export default function Home() {
+const login = ({ providers }) => {
   return (
-    <div className="bg-black h-screen overflow-hidden">
-      <main className="flex">
-        <Sidebar />
-        <Center />
-      </main>
-
-      <div className="sticky bottom-0">
-        <Player />
-      </div>
+    <div className="flex flex-col items-center bg-black min-h-screen w-full justify-center">
+      <Image
+        className="w-52 mb-5"
+        src="https://links.papareact.com/9xl"
+        alt="icon spotify"
+        width={300}
+        height={300}
+      />
+      {Object.values(providers).map((provider) => (
+        <div key={provider.name}>
+          <button
+            className="bg-[#18D860] text-white p-5 rounded-full"
+            onClick={() => signIn(provider.id, { callbackUrl: "/init" })}
+          >
+            Login with {provider.name}
+          </button>
+        </div>
+      ))}
     </div>
   );
-}
+};
 
-export async function getServerSideProps(context) {
-  const session = await getSession(context);
+export default login;
+
+export async function getServerSideProps() {
+  const providers = await getProviders();
 
   return {
     props: {
-      session,
+      providers,
     },
   };
 }

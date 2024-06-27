@@ -24,6 +24,7 @@ export const Center = () => {
   const [color, setColor] = useState(null);
   const playlistId = useRecoilValue(playlistIdState);
   const [playlist, setPlaylist] = useRecoilState(playlistState);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   useEffect(() => {
     setColor(shuffle(colors).pop());
@@ -38,12 +39,17 @@ export const Center = () => {
       .catch((err) => console.log("Something went wrong", err));
   }, [spotifyApi, playlistId]);
 
+  const handleLogout = () => {
+    setIsDropdownOpen(false);
+    signOut();
+  };
+
   return (
     <div className="flex-grow h-screen overflow-y-scroll scrollbar-hide">
-      <header className="absolute top-5 right-8">
+      <header className="absolute top-5 right-8 w-[14]">
         <div
-          onClick={signOut}
           className="flex items-center text-white bg-black space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2"
+          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         >
           <Image
             className={`w-10 h-10 p-1 rounded-full ring-2 ring-${color} dark:ring-${color}`}
@@ -55,6 +61,13 @@ export const Center = () => {
           />
           <h2>{session?.user?.name}</h2>
           <ChevronDownIcon className="h-5 w-5" />
+          {isDropdownOpen && (
+            <div className="absolute top-14 right-0 bg-black rounded-md shadow-lg z-10 w-[14]">
+              <p className="text-white p-2" onClick={handleLogout}>
+                Cerrar sesión
+              </p>
+            </div>
+          )}
         </div>
       </header>
 
@@ -65,8 +78,6 @@ export const Center = () => {
           src={playlist?.images?.[0]?.url}
           className="h-44 w-44 shadow-2xl"
           alt=""
-          // width={44}
-          // height={500}
         />
         <div>
           <p>PLAYLIST</p>
