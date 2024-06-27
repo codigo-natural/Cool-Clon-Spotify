@@ -17,4 +17,4 @@ Proyecto realizado con el fin de poner en practica el consume de APIs, ademas de
 Si quieres revizar el proyecto desde tu equipo debes clonar el repositorio, instalar dependencias, ir a la consola para desarrolladores de [Spotify](https://developer.spotify.com/dashboard) y generar el secret id para que te funcione en local.
 
 ----
-![alt text](image.png)
+![alt text](image-1.png)
